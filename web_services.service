@@ -1,0 +1,15 @@
+[Unit]
+Description=uWSGI instance to serve web_services
+After=network.target
+
+[Service]
+User=oracle
+Group=nginx
+WorkingDirectory=/home/oracle/web_services
+Environment="PATH=/home/oracle/web_services/venv/bin"
+Environment="LD_LIBRARY_PATH=/usr/lib/oracle/12.2/client64/lib/"
+Environment="ORACLE_HOME=/usr/lib/oracle/12.2/client64/bin"
+ExecStart=/home/oracle/web_services/venv/bin/uwsgi --ini /home/oracle/web_services/web_services.ini
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI items rest
+
+[Service]
+Environment=DATABASE_URL=sofian/sofian@192.168.9.105:1521/orcl
+ExecStart=/var/www/html/items-rest/venv/bin/uwsgi --master --emperor /var/www/html/items-rest/uwsgi.ini --die-on-term --uid root --gid root --logto /var/www/html/items-rest/log/emperor.log
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
